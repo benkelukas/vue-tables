@@ -4,15 +4,15 @@
 // }
 
 
-describe('ucfirst', function() {
+describe('ucfirst', function () {
     var ucfirst = require('../../../lib/helpers/ucfirst');
     var context = "nadine";
 
-    it("capitalizes the first letter", function() {
+    it("capitalizes the first letter", function () {
 
-      var res = ucfirst.call(context);
+        var res = ucfirst.call(context);
 
-      expect(res).toBe("Nadine");
+        expect(res).toBe("Nadine");
 
     });
 
