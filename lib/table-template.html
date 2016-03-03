@@ -1,4 +1,4 @@
-<div class="VueTables VueTables--[[source]]">
+<div class="VueTables VueTables--[[source]]" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="row">
         <div class="col-md-6">
             <div v-if="!options.filterByColumn" class="form-group form-inline pull-left VueTables__search">
@@ -46,12 +46,25 @@
         <tr v-if="options.filterByColumn" class="VueTables__filters-row">
             <th v-for="column in columns">
                 <input @keyup="search()"
-                       v-if="options.dateColumns.indexOf(column)==-1 && customColumns.indexOf(column)==-1"
+                       v-if="options.dateColumns.indexOf(column)==-1 && customColumns.indexOf(column)==-1 && selectColumns[column] == undefined"
                        class="form-control"
                        type="text"
                        placeholder="{{display('filterBy',getHeading(column))}}"
                        name="{{column}}"
                        v-model="query[column]">
+                <select
+                        @change="search()"
+                        v-if="selectColumns[column] != undefined"
+                        class="form-control"
+                        type="text"
+                        placeholder="{{display('filterBy',getHeading(column))}}"
+                        name="{{column}}"
+                        v-model="query[column]"
+                >
+                    <option v-for="option in selectColumns[column]" :value="option.value">
+                        {{option.text}}
+                    </option>
+                </select>
 
                 <input @keyup="search()"
                        v-if="options.dateColumns.indexOf(column)>-1"
