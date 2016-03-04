@@ -51,39 +51,41 @@
                 &nbsp;
             </th>
             <th v-for="column in columns">
-                <input @keyup="search()"
-                       v-if="
+                <div v-if="excludedFilterColumns.indexOf(column)==-1">
+                    <input @keyup="search()"
+                           v-if="
                        options.dateColumns.indexOf(column)==-1
                        && customColumns.indexOf(column)==-1
                        && selectColumns[column] == undefined
                        && column != 'checkbox'
                        "
-                       class="form-control"
-                       type="text"
-                       placeholder="{{display('filterBy',getHeading(column))}}"
-                       name="{{column}}"
-                       v-model="query[column]">
-                <select
-                        @change="search()"
-                        v-if="selectColumns[column] != undefined"
-                        class="form-control"
-                        type="text"
-                        placeholder="{{display('filterBy',getHeading(column))}}"
-                        name="{{column}}"
-                        v-model="query[column]"
-                >
-                    <option :value="null" selected>Vše</option>
+                           class="form-control"
+                           type="text"
+                           placeholder="{{display('filterBy',getHeading(column))}}"
+                           name="{{column}}"
+                           v-model="query[column]">
+                    <select
+                            @change="search()"
+                            v-if="selectColumns[column] != undefined"
+                            class="form-control"
+                            type="text"
+                            placeholder="{{display('filterBy',getHeading(column))}}"
+                            name="{{column}}"
+                            v-model="query[column]"
+                    >
+                        <option :value="null" selected>Vše</option>
 
-                    <option v-for="option in selectColumns[column]" :value="option.value">
-                        {{option.text}}
-                    </option>
-                </select>
+                        <option v-for="option in selectColumns[column]" :value="option.value">
+                            {{option.text}}
+                        </option>
+                    </select>
 
-                <input @keyup="search()"
-                       v-if="options.dateColumns.indexOf(column)>-1"
-                       class="form-control"
-                       placeholder="{{display('filterBy',getHeading(column))}}"
-                       name="{{column}}">
+                    <input @keyup="search()"
+                           v-if="options.dateColumns.indexOf(column)>-1"
+                           class="form-control"
+                           placeholder="{{display('filterBy',getHeading(column))}}"
+                           name="{{column}}">
+                </div>
             </th>
         </tr>
         </thead>
