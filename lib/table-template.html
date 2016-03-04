@@ -36,6 +36,9 @@
     <table class="VueTables__table table" v-bind:class="options.skin">
         <thead>
         <tr>
+            <th v-if="options.checkboxes">
+                Zaškrtněte
+            </th>
             <th @click="orderByColumn(column)"
                 v-for="column in columns"
                 v-bind:class="sortableClass(column)"><span class="VueTables__heading">{{getHeading(column)}}</span>
@@ -44,9 +47,17 @@
            v-bind:class="sortableChevronClass(column)"></span></th>
         </tr>
         <tr v-if="options.filterByColumn" class="VueTables__filters-row">
+            <th v-if="options.checkboxes">
+                &nbsp;
+            </th>
             <th v-for="column in columns">
                 <input @keyup="search()"
-                       v-if="options.dateColumns.indexOf(column)==-1 && customColumns.indexOf(column)==-1 && selectColumns[column] == undefined"
+                       v-if="
+                       options.dateColumns.indexOf(column)==-1
+                       && customColumns.indexOf(column)==-1
+                       && selectColumns[column] == undefined
+                       && column != 'checkbox'
+                       "
                        class="form-control"
                        type="text"
                        placeholder="{{display('filterBy',getHeading(column))}}"
@@ -61,6 +72,8 @@
                         name="{{column}}"
                         v-model="query[column]"
                 >
+                    <option :value="null" selected>Vše</option>
+
                     <option v-for="option in selectColumns[column]" :value="option.value">
                         {{option.text}}
                     </option>
@@ -86,6 +99,9 @@
         </tfoot>
         <tbody v-el:tbody>
         <tr v-for="row in data [[rowFilters]]" [[trackBy]]>
+            <td v-if="checkboxes">
+                <input type="checkbox" name="id[]" :value="row.id">
+            </td>
             <td v-for="column in columns"
                 v-html="row[column] | render row column [[columnFilters]]"></td>
         </tr>
