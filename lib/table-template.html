@@ -1,4 +1,5 @@
-<div class="VueTables VueTables--[[source]]" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<div class="VueTables VueTables--[[source]]" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+     xmlns:v-el="http://www.w3.org/1999/xhtml">
     <div class="row">
         <div class="col-md-6">
             <div v-if="!options.filterByColumn" class="form-group form-inline pull-left VueTables__search">
@@ -100,12 +101,12 @@
         </tr>
         </tfoot>
         <tbody v-el:tbody>
-        <tr v-for="row in data [[rowFilters]]" [[trackBy]]>
+        <tr v-for="(rowIndex, row) in data [[rowFilters]]" [[trackBy]]>
             <td v-if="checkboxes">
                 <input type="checkbox" name="id[]" :value="row.id">
             </td>
             <td v-for="column in columns"
-                v-html="row[column] | render row column [[columnFilters]]"></td>
+                v-html="row[column] | render row column rowIndex [[columnFilters]]"></td>
         </tr>
 
         <tr v-if="count==0"

@@ -22,13 +22,16 @@
 <script type="text/javascript" src="../dist/vue-tables.min.js"></script>
 <script>
     Vue.use(VueTables.server);
-    new Vue({
+    Vue.config.debug = true
+    var app = new Vue({
         el: "#people",
         data: {
             options: {
                 columns: ['id', 'name', 'age', 'group'],
                 filterByColumn: true,
+                compileTemplates: true,
                 excludedFilterColumns: ['id'],
+                editableColumns: ['name'],
                 checkboxes:true,
 
                 selectColumns: {
@@ -48,8 +51,14 @@
                     ]
                 }
             }
+        },
+        events: {
+            'editable-column-updated': function(event) {
+                console.log(event);
+            }
         }
     });
+    console.log(app);
 </script>
 </body>
 </html>
