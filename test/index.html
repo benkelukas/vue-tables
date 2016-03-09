@@ -26,12 +26,13 @@
     var app = new Vue({
         el: "#people",
         data: {
+            message: String,
             options: {
                 columns: ['id', 'name', 'age', 'group'],
                 filterByColumn: true,
                 compileTemplates: true,
                 excludedFilterColumns: ['id'],
-                editableColumns: ['name'],
+                editableColumns: ['name', 'age'],
                 checkboxes:true,
 
                 selectColumns: {
@@ -54,7 +55,7 @@
         },
         events: {
             'editable-column-updated': function(event) {
-                console.log(event);
+                this.message = "Editing column " + event.id + " field " + event.field + " to value: " + event.value
             }
         }
     });
