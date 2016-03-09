@@ -10,31 +10,31 @@ $people = [
         'id'    => 1,
         'name'  => 'John',
         'age'   => '20',
-        'group' => 1
+        'group' => 'Admin'
     ],
     [
         'id'    => 2,
         'name'  => 'Jane',
         'age'   => '22',
-        'group' => 2
+        'group' => 'User'
     ],
     [
         'id'    => 3,
         'name'  => 'Susan',
         'age'   => '40',
-        'group' => 3
+        'group' => 'Chimichangas'
     ],
     [
         'id'    => 4,
         'name'  => 'Chris',
         'age'   => '50',
-        'group' => 2
+        'group' => 'User'
     ],
     [
         'id'    => 5,
         'name'  => 'Dan',
         'age'   => '31',
-        'group' => 1
+        'group' => 'Admin'
     ]
 ];
 
