@@ -103,7 +103,7 @@
         <tbody v-el:tbody>
         <tr v-for="(rowIndex, row) in data [[rowFilters]]" [[trackBy]]>
             <td v-if="checkboxes">
-                <input type="checkbox" name="id[]" :value="row.id">
+                <input type="checkbox" name="{{checkboxesName}}_id[]" :value="row.id" @click="checkRow(row.id)">
             </td>
             <td v-for="column in columns"
                 v-html="row[column] | render row column rowIndex [[columnFilters]]"></td>

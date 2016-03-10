@@ -33,7 +33,8 @@
                 compileTemplates: true,
                 excludedFilterColumns: ['id'],
                 editableColumns: ['name', 'age', 'group'],
-                checkboxes:true,
+                checkboxes: true,
+                checkboxesName: 'people',
 
                 selectColumns: {
                     'group': [
@@ -54,8 +55,12 @@
             }
         },
         events: {
-            'editable-column-updated': function(event) {
+            'editable-column-updated': function (event) {
                 this.message = "Editing column " + event.id + " field " + event.field + " to value: " + event.value
+            },
+            'row-checked': function (event) {
+                console.log(event.id);
+                console.log(this.$children[0].getCheckedRows());
             }
         }
     });
