@@ -63,7 +63,7 @@
                            class="form-control"
                            type="text"
                            placeholder="{{display('filterBy',getHeading(column))}}"
-                           name="{{column}}"
+                           name="{{tableName}}_{{column}}"
                            v-model="query[column]">
                     <select
                             @change="search()"
@@ -71,7 +71,7 @@
                             class="form-control"
                             type="text"
                             placeholder="{{display('filterBy',getHeading(column))}}"
-                            name="{{column}}"
+                            name="{{tableName}}_{{column}}"
                             v-model="query[column]"
                     >
                         <option :value="null" selected>Vše</option>
@@ -85,7 +85,7 @@
                            v-if="options.dateColumns.indexOf(column)>-1"
                            class="form-control"
                            placeholder="{{display('filterBy',getHeading(column))}}"
-                           name="{{column}}">
+                           name="{{tableName}}_{{column}}">
                 </div>
             </th>
         </tr>
@@ -103,7 +103,7 @@
         <tbody v-el:tbody>
         <tr v-for="(rowIndex, row) in data [[rowFilters]]" [[trackBy]]>
             <td v-if="checkboxes">
-                <input type="checkbox" name="{{checkboxesName}}_id[]" :value="row.id" @click="checkRow(row.id)">
+                <input type="checkbox" name="{{tableName}}_id[]" :value="row.id" @click="checkRow(row.id)">
             </td>
             <td v-for="column in columns"
                 v-html="row[column] | render row column rowIndex [[columnFilters]]"></td>
