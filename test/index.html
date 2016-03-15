@@ -14,7 +14,7 @@
     <div id="people">
         <input type="text" v-model="message" value="test">
         <span>{{message}}</span>
-        <v-server-table url="/test/people.php" :options="options"></v-server-table>
+        <v-server-table url="/test/people.php" :checked_rows=[1,2] :options="options"></v-server-table>
     </div>
 </div>
 
