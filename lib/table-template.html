@@ -38,7 +38,7 @@
         <thead>
         <tr>
             <th v-if="options.checkboxes">
-                Zaškrtněte
+                {{display('checkboxHeader')}}
             </th>
             <th @click="orderByColumn(column)"
                 v-for="column in columns"
